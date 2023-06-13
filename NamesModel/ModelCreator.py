@@ -1,10 +1,9 @@
 import json
 import os
-
 import numpy as np  # linear algebra
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 from dotenv import find_dotenv, load_dotenv
-from sklearn.linear_model import LinearRegression
+from sklearn.neighbors import KNeighborsRegressor
 
 
 def load_data():
@@ -41,15 +40,18 @@ def createModel(data_path: str, sheet_name: str, sheet_name_english: str,
 
     # Build a model
     for i in range(len(clean_data.columns)):
-        model = LinearRegression()
         count = clean_data.iloc[:, i].values
         years = clean_data.index.values
-        model.fit(years[:0 - predicting].reshape(-1, 1), count[:0 - predicting].reshape(-1, 1))
-        predicted_values = model.predict(years[0 - predicting:].reshape(-1, 1)).astype("int")
+        # KNN
+        n_neighbors = 3
+        knn = KNeighborsRegressor(n_neighbors, weights="distance")
+        knn = knn.fit(years[:0 - predicting].reshape(-1, 1), count[:0 - predicting].reshape(-1).ravel())
+        predicted_values = knn.predict(years[0 - predicting:].reshape(-1, 1)).astype("int")
+
         predicted_values = np.clip(predicted_values, 0, None)
         clean_data.iloc[0 - predicting:, i] = predicted_values.flatten()
 
-    # Expoert the new predicted to new excel
+    # Export the new predicted to new excel
     clean_data.to_excel("Assets/Predicted_Names_" + sheet_name_english + ".xlsx", index=True)
 
 

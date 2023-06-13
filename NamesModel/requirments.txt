@@ -1,0 +1,14 @@
+numpy==1.24.3
+pandas
+xlrd
+matplotlib
+seaborn
+ipywidgets
+plotly==5.15.0
+cufflinks
+scikit-learn
+yellowbrick
+graphviz
+pmdarima
+prophet
+openpyxl

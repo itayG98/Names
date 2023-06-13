@@ -1,0 +1,44 @@
+{
+  "sheets": [
+    {
+      "englishName": "Jew_Male",
+      "name": "יהודים"
+    },
+    {
+      "englishName": "Jew_Female",
+      "name": "יהודיות"
+    },
+    {
+      "englishName": "Muslim_Male",
+      "name": "מוסלמים"
+    },
+    {
+      "englishName": "Muslim_Female",
+      "name": "מוסלמיות"
+    },
+    {
+      "englishName": "Christian_Male",
+      "name": "נוצרים"
+    },
+    {
+      "englishName": "Christian_Female",
+      "name": "נוצריות"
+    },
+    {
+      "englishName": "Druze_Male",
+      "name": "דרוזים"
+    },
+    {
+      "englishName": "Druze_Female",
+      "name": "דרוזיות"
+    },
+    {
+      "englishName": "Other_Male",
+      "name": "אחרים"
+    },
+    {
+      "englishName": "Other_Female",
+      "name": "אחרות"
+    }
+  ]
+}

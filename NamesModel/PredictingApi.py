@@ -23,15 +23,16 @@ class PredictingApi:
         data = pd.read_excel(file_path, index_col=0)
         return data[name][year]
 
-    def get_top_names(self, sheet_name: str, year: int = last_year, count: int = 25) -> int:
+    def get_top_names(self, sheet_name: str, year: int = last_year, startwith : str = "", count: int = 25 ) -> int:
         file_path = "Assets/Predicted_Names_" + sheet_name + ".xlsx"
         data = pd.read_excel(file_path, index_col=0)
         row = data.loc[year]
-        return row.nlargest(count)
+        filtered_row = row[row.index.str.startswith(startwith)]
+        return filtered_row.nlargest(count)
 
 
 api = PredictingApi()
-res = api.get_top_names("Jew_male", 2006)
+res = api.get_top_names("Jew_male", 2006, "יונ")
 print(res)
-res = api.get_name_count("איתי","Jew_male", 2006)
+res = api.get_name_count("איתי", "Jew_male", 2006)
 print(res)

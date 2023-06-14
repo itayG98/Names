@@ -35,9 +35,10 @@ def createModel(data_path: str, sheet_name: str, sheet_name_english: str,
     clean_data.set_index(pd.DatetimeIndex(clean_data.index).to_period('Y'))
     x = clean_data.index.values
 
-    #Create new zero rows
-    zeros_df = pd.DataFrame(0, index=[i + 2021 for i in range(1, predicting+1)], columns=clean_data.columns)
+    # Create new zero rows
+    zeros_df = pd.DataFrame(0, index=[i + 2021 for i in range(1, predicting + 1)], columns=clean_data.columns)
     clean_data = pd.concat([clean_data, zeros_df])
+
     # Build a model
     for i in range(len(clean_data.columns)):
         count = clean_data.iloc[:, i].values
@@ -51,7 +52,7 @@ def createModel(data_path: str, sheet_name: str, sheet_name_english: str,
         predicted_values = np.clip(predicted_values, 0, None)
         clean_data.iloc[0 - predicting:, i] = predicted_values.flatten()
 
-    # Export the new predicted to new excel
+    # Export the new predicted dataframe to new excel
     clean_data.to_excel("Assets/Predicted_Names_" + sheet_name_english + ".xlsx", index=True)
 
 
@@ -59,5 +60,3 @@ def init():
     sheets, data_path = load_data()
     for sheet in sheets:
         createModel(data_path, sheet["name"], sheet["englishName"])
-
-init()

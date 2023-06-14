@@ -20,7 +20,7 @@ class PredictingApi:
 
     def get_name_count(self, name: str, sheet_name: str, year: int = last_year) -> int:
         file_path = "Assets/Predicted_Names_" + sheet_name + ".xlsx"
-        data = pd.read_excel(file_path)
+        data = pd.read_excel(file_path, index_col=0)
         return data[name][year]
 
     def get_top_names(self, sheet_name: str, year: int = last_year, count: int = 25) -> int:
@@ -30,7 +30,8 @@ class PredictingApi:
         return row.nlargest(count)
 
 
-
 api = PredictingApi()
 res = api.get_top_names("Jew_male", 2006)
+print(res)
+res = api.get_name_count("איתי","Jew_male", 2006)
 print(res)

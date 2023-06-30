@@ -102,6 +102,6 @@ async def init():
     sheets, data_path = load_data()
     for sheet in sheets:
         # test_model(data_path, sheet["name"], sheet["englishName"], 3)
-        create_model(data_path, sheet["name"], sheet["englishName"], 3)
+        #create_model(data_path, sheet["name"], sheet["englishName"], 3)
         print("finished " + sheet["englishName"])
     return True

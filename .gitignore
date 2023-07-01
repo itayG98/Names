@@ -1,5 +1,16 @@
+# Ignore Python byte-code and compiled files
 *.pyc
+__pycache__/
+
+# Ignore local development environment files
 .env
-# Ignore virtual environment directories
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore log files
+*.log
+
+# Ignore dependencies installed by pip
 venv/
-env/
